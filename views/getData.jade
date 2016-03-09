@@ -1,0 +1,33 @@
+﻿doctype html
+html
+  head
+    meta(charset="utf-8")
+    title Example program
+  body
+    h2 #{title}
+    h4 #{message}
+    
+    form(id="student_form")
+      span Student number :
+        input(type="text", name="studentNumber")
+        br
+      span Full name :
+        input(type="text", name="name")
+        br
+      span Program :
+        br
+        input(type="radio", name="program", value="110")
+        span 110
+        br
+        input(type="radio", name="program", value="120")
+        span 120
+        br
+      span Courses :
+        br
+        input(type="text", name ="courses")
+        br
+        input(type="text", name ="courses")
+        br
+        input(type="text", name ="courses")
+        br
+      input(type="submit", formmethod="post", formaction="/send" value="Submit")
