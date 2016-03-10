@@ -1,11 +1,15 @@
 {
-  "name": "NodeProgram2withTemplates",
-  "version": "0.0.0",
-  "description": "NodeProgram2withTemplates",
+  "name": "NodeProgramWithTemplates",
+  "version": "1.0.0",
+  "description": "A simple starter Node.js program",
   "main": "app.js",
   "author": {
-    "name": "Tony",
-    "email": ""
+    "name": "Marin Skorsur",
+    "email": "m.skorsur@gmail.com"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/mskorsur/NodeStartProject.git"
   },
   "dependencies": {
     "body-parser": "^1.15.0",
