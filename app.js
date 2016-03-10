@@ -43,11 +43,11 @@ app.use('/', root);
 
 //mouting handler to the /data path in order to
 //send back data from the database to the user
-app.use('/data', sendData);
+app.use('/data', getData);
 
 //mouting handler to the /send path in order to
 //get data from the user which is located in the request body
-app.use('/send', getData);
+app.use('/send', sendData);
 
 //defining default 404 response
 app.use(function (req, res) {

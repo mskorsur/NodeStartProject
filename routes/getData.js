@@ -1,23 +1,29 @@
 ﻿var express = require('express');
 var router = express.Router();
-var mongoose = require('mongoose');
 var student = require('./dataScheme');
 
+//be careful when setting up paths  - the one that was sent from app.js
+// which is /data corresponds with / in this module!!!
+
+//query the database for all students, log the error if there was any
+//otherwise data will be sent to the template which will be rendered for the user
 router.get('/', function (req, res) {
-    res.render('getData', { title: 'Student information form', message: 'Fill the form and send it to the database' });
+    student.find({}, function (err, data) {
+        if (err) res.render('sendData', { title: 'Student information', message: 'Couldn\'t get information \nfrom the databse' });
+        else res.render('sendData', { title: 'Student information', message: 'Displaying information about the students:', students: data });
+    });
+
 });
 
-router.post('/', function (req, res) {
-    new student({
-        _id : new mongoose.Types.ObjectId,
-        studentNumber : req.body.studentNumber,
-        name : req.body.name,
-        program: req.body.program,
-        courses : req.body.courses
-    }).save(function (err) {
-        if (err) res.send('<h3>An error has occured while saving student</h3>');
-        else res.send('<h3>Student saved successfully</h3>');
-    });
+
+router.get('/:programs', function (req, res) {
+    var programs = req.params.programs;
+   
+    student.find({ program : programs }, function (err, data) {
+        if (err) res.render('sendData', { title: 'Student information', message: 'Couldn\'t get information \nfrom the databse' });
+        else res.render('sendData', { title: 'Student information', message: 'Displaying information about the students:', students: data });
+     });
+   
 });
 
 module.exports = router;
