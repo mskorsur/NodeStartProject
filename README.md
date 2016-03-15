@@ -12,10 +12,12 @@
  We can either pull down data form the server which will list all of the current students in the database
  or we can fill out a simple form and save a new entry in the database.
 
-  Ready to be used as a starting point for a university's project / bachelor's thesis.
+ Ready to be used as a starting point for a university's project / bachelor's thesis.
 
  ------------
- UPDATE: Decided to switch from Jade templating engine to Handlebars. Its resemblance to native HTML
- makes it more appealing and easier to use whilst its capabilities are equal to the ones in Jade.
- Every view was conveniently changed from Jade's syntax Handlebars', but its content stayed the same.
+ UPDATE: Decided to switch from Jade templating engine to Handlebars. The reason for this was
+ mainly because Handlebars' views closely resemble native HTML which, in turn, makes it more simple
+ and natural to work with. Along with block, helpers and partials I think it provides far more 
+ option and choices.
+
 
