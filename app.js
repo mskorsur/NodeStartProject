@@ -1,7 +1,7 @@
 ﻿var express = require('express');
 var mongoose = require('mongoose');
 var bodyParser = require('body-parser');
-
+var hbs = require('hbs');
 var app = express();
 
 //defining different route handlers
@@ -24,7 +24,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 //setting up a default view engine and folder 
 //which contains different views
 app.set('views', './views');
-app.set('view engine', 'jade');
+app.set('view engine', 'hbs');
 
 //request info middleware
 var logRequestInfo = function (req, res, next) {
@@ -40,6 +40,7 @@ app.use(logRequestInfo);
 //mounting handler to the root path in order to
 //respond with the homepage
 app.use('/', root);
+
 
 //mouting handler to the /data path in order to
 //send back data from the database to the user

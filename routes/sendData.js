@@ -4,7 +4,7 @@ var mongoose = require('mongoose');
 var student = require('./dataScheme');
 
 router.get('/', function (req, res) {
-    res.render('getData', { title: 'Student information form', message: 'Fill the form and send it to the database' });
+    res.render('send', { layout: 'main', title: 'Student information form', message: 'Fill the form and send it to the database' });
 });
 
 router.post('/', function (req, res) {

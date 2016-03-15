@@ -9,8 +9,8 @@ var student = require('./dataScheme');
 //otherwise data will be sent to the template which will be rendered for the user
 router.get('/', function (req, res) {
     student.find({}, function (err, data) {
-        if (err) res.render('sendData', { title: 'Student information', message: 'Couldn\'t get information \nfrom the databse' });
-        else res.render('sendData', { title: 'Student information', message: 'Displaying information about the students:', students: data });
+        if (err) res.render('get', { layout: 'main', title: 'Student information', message: 'Couldn\'t get information \nfrom the databse' });
+        else res.render('get', { layout: 'main',title: 'Student information', message: 'Displaying information about the students:', students: data });
     });
 
 });
@@ -20,8 +20,8 @@ router.get('/:programs', function (req, res) {
     var programs = req.params.programs;
    
     student.find({ program : programs }, function (err, data) {
-        if (err) res.render('sendData', { title: 'Student information', message: 'Couldn\'t get information \nfrom the databse' });
-        else res.render('sendData', { title: 'Student information', message: 'Displaying information about the students:', students: data });
+        if (err) res.render('get', { layout: 'main', title: 'Student information', message: 'Couldn\'t get information \nfrom the databse' });
+        else res.render('get', { layout: 'main',title: 'Student information', message: 'Displaying information about the students:', students: data });
      });
    
 });

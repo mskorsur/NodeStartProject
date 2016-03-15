@@ -1,0 +1,17 @@
+﻿     <h2>{{title}}</h2>
+     <h4>{{message}}</h4>
+
+     <div id="student_content">
+         <ol>
+             {{#each students}}
+             <li>
+                 <ul style="margin: 15px">
+                    <li>Student's number - {{studentNumber}} </li>
+                    <li>Full name - {{name}}</li>
+                    <li>Program - {{program}}</li>
+                    <li>Subjects - {{courses}}</li>
+                 </ul>
+             </li> 
+             {{/each}}
+         </ol>
+     </div>
