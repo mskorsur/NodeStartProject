@@ -2,7 +2,12 @@
 var router = express.Router();
 
 router.get('/', function (req, res) {
-    res.render('homepage', { layout: 'main', title: 'Welcome', message: 'Example program using Express, Mongo and Handlebars'});
+    if (req.session.userName === undefined) {
+        res.render('main', { layout: 'layout' });
+    }
+    else {
+        res.render('homepage', { home: true });
+    }
 });
 
 module.exports = router;

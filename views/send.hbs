@@ -1,16 +1,59 @@
-﻿    <h2>{{title}}</h2>
-    <h4>{{message}}</h4>
+﻿<h4>{{message}}</h4>
+     
+<form id="login-form" class="form-horizontal">
+    <div class="form-group">
+        <label for="studentNumber" class="col-sm-2 control-label">Student Number</label>
+        <div class="col-xs-3">
+            <input type="text" class="form-control" name="studentNumber" >
+        </div>
+    </div>
 
-    <form id="student_form">
-       Student number : <input type="text" name="studentNumber"/> <br />
-       Full name : <input type="text" name="name" /> <br />
-       Program : 
-        <br />110<input type="radio"  name="program" value="110" /> <br />
-        120<input type="radio" , name="program" /> <br />
-       Courses : 
-        <br /><input type="text" , name="courses" /> <br />
-        <input type="text" , name="courses" /> <br />
-        <input type="text" , name="courses" /> <br />
+    <div class="form-group">
+        <label for="name" class="col-sm-2 control-label">Full name</label>
+        <div class="col-xs-3">
+            <input type="text" class="form-control" name="name" >
+        </div>
+    </div>
 
-        <input type="submit" formmethod="post" formaction="/send" value="Submit" />
-    </form>
+    <div class="radio">
+            <label>
+                <input type="radio" name="program" value="110">
+                110
+            </label>
+    </div>
+
+    <div class="radio">
+            <label>
+                <input type="radio" name="program" value="120">
+                120
+            </label>
+    </div>
+    
+    <div class="form-group">
+        <label for="courses" class="col-sm-2 control-label">Course #1</label>
+        <div class="col-xs-3">
+            <input type="text" class="form-control" name="courses" >
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label for="courses" class="col-sm-2 control-label">Course #2</label>
+        <div class="col-xs-3">
+            <input type="text" class="form-control" name="courses">
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label for="courses" class="col-sm-2 control-label">Course #3</label>
+        <div class="col-xs-3">
+            <input type="text" class="form-control" name="courses">
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="col-sm-offset-2 col-sm-10">
+            <button type="submit" class="btn btn-default" formmethod="post" formaction="/send">Send</button>
+        </div>
+    </div>
+
+</form>

@@ -1,10 +1,14 @@
 ﻿var express = require('express');
 var router = express.Router();
 var mongoose = require('mongoose');
-var student = require('./dataScheme');
+var student = require('../model/dataScheme');
 
 router.get('/', function (req, res) {
-    res.render('send', { layout: 'main', title: 'Student information form', message: 'Fill the form and send it to the database' });
+    res.render('send', {
+        layout: 'homepage', 
+        home: false, 
+        message: 'Fill the form and send it to the database'
+    });
 });
 
 router.post('/', function (req, res) {
