@@ -27,7 +27,7 @@
  I made a mistake by putting it only into /login route, so even when a user logged in, the app didn't remember that state.
  However, session info isn't stored(session is initialized, but empty) until a user successfully logs in. An existing 
  connection with the Mongo database is used to provide storage for the session information. This means that cookie, which is
- constantly being send between user and server, contains only sessionID and prevents anyone from reading ant details about a 
+ constantly being sent between user and server, contains only sessionID and prevents anyone from reading any details about a 
  particular session.
  Express-session and connect-mongo modules have been used.
 
@@ -36,7 +36,7 @@
  and retrieved when they attempt to log in. For password encryption a module called password-hash has been used, so that only a hash print
  is saved in database and looked up for comparison when a user is logging in, instead of a plaintext password value. For now each new user
  has a default role of a basic member which grants him access to students data and allows him to post new students.If a guest tries to brute
- enter a /data or /send path, they're being redirected to the login page.Still need to figure outwhat other roles there should be and what 
+ enter a /data or /send path, they're being redirected to the login page.Still need to figure out what other roles should there be and what 
  rights should be granted to them, so that full scale role based access control can be implemented.
 
  3)Views are now based on some basic Bootstrap templates to look more stylish and advanced. Handlebars remains the core
