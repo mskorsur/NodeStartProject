@@ -7,21 +7,39 @@ var student = require('../model/dataScheme');
 
 //query the database for all students, log the error if there was any
 //otherwise data will be sent to the template which will be rendered for the user
-router.get('/', function (req, res) {
+router.get('/', function onDataGET(req, res) {
     student.find({}, function (err, data) {
-        if (err) res.render('get', { layout: 'homepage', home: false, message: 'Couldn\'t get information \nfrom the databse' });
-        else res.render('get', { layout: 'homepage', home: false, message: 'Displaying information about the students:', students: data });
+        if (err) res.render('get', {
+            layout: 'homepage', 
+            home: false, 
+            message: 'Couldn\'t get information \nfrom the databse'
+        });
+        else res.render('get', {
+            layout: 'homepage', 
+            home: false, 
+            message: 'Displaying information about the students:', 
+            students: data
+        });
     });
 
 });
 
 
-router.get('/:programs', function (req, res) {
+router.get('/:programs', function dataGETwithParams(req, res) {
     var programs = req.params.programs;
    
     student.find({ program : programs }, function (err, data) {
-        if (err) res.render('get', { layout: 'homepage', home: false, message: 'Couldn\'t get information \nfrom the databse' });
-        else res.render('get', { layout: 'homepage', home: false, message: 'Displaying information about the students:', students: data });
+        if (err) res.render('get', {
+            layout: 'homepage', 
+            home: false, 
+            message: 'Couldn\'t get information \nfrom the databse'
+        });
+        else res.render('get', {
+            layout: 'homepage', 
+            home: false, 
+            message: 'Displaying information about the students:', 
+            students: data
+        });
      });
    
 });

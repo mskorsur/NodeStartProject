@@ -3,7 +3,7 @@ var router = express.Router();
 var mongoose = require('mongoose');
 var student = require('../model/dataScheme');
 
-router.get('/', function (req, res) {
+router.get('/', function onSendGET(req, res) {
     res.render('send', {
         layout: 'homepage', 
         home: false, 
@@ -11,7 +11,7 @@ router.get('/', function (req, res) {
     });
 });
 
-router.post('/', function (req, res) {
+router.post('/', function onSendPOST(req, res) {
     new student({
         _id : new mongoose.Types.ObjectId,
         studentNumber : req.body.studentNumber,
