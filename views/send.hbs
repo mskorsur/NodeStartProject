@@ -4,31 +4,35 @@
     <div class="form-group">
         <label for="studentNumber" class="col-sm-2 control-label">Student Number</label>
         <div class="col-xs-3">
-            <input type="text" class="form-control" name="studentNumber" >
+            <input type="text" class="form-control" name="studentNumber" required>
         </div>
     </div>
 
     <div class="form-group">
         <label for="name" class="col-sm-2 control-label">Full name</label>
         <div class="col-xs-3">
-            <input type="text" class="form-control" name="name" >
+            <input type="text" class="form-control" name="name" required>
         </div>
     </div>
 
-    <div class="radio">
-            <label>
-                <input type="radio" name="program" value="110">
-                110
-            </label>
+    <div class="form-group">
+        <label class="col-sm-2 control-label">Program</label>
+        <div class="col-xs-9">
+            <div class="radio">
+                <label>
+                    <input name="program" value="110" type="radio">
+                    110
+                </label>
+            </div>
+            <div class="radio">
+                <label>
+                    <input name="program" value="120" type="radio">
+                    120
+                </label>
+            </div>
+        </div>
     </div>
-
-    <div class="radio">
-            <label>
-                <input type="radio" name="program" value="120">
-                120
-            </label>
-    </div>
-    
+      
     <div class="form-group">
         <label for="courses" class="col-sm-2 control-label">Course #1</label>
         <div class="col-xs-3">
