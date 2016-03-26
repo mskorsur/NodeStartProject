@@ -1,5 +1,5 @@
 ﻿var mongoose = require('mongoose');
-var passwordHash = require('password-hash');
+var bcrypt = require('bcrypt-nodejs');
 
 //defining a scheme which will represent users of the application
 var userSchema = new mongoose.Schema({
@@ -13,13 +13,13 @@ var userSchema = new mongoose.Schema({
 
 //encrypting a user chosen password so that the secure hash can be stored in the database
 userSchema.methods.generateHash = function (passwrd) {
-    return passwordHash.generate(passwrd, {algorithm: 'sha256'});
+    return bcrypt.hashSync(passwrd, bcrypt.genSaltSync(9));
 };
 
 //method used during login which retrieves stored hash from the database, then
 //hashes users typed input and compares them
 userSchema.methods.validPassword = function (passwrd) {
-    return passwordHash.verify(passwrd, this.password);
+    return bcrypt.compareSync(passwrd, this.password);
 };
 
 //model function will create a users collection in the database

@@ -36,9 +36,9 @@ router.post('/', function onRegisterPOST(req, res) {
             newUser.save(function (err) {
                 if (err) res.send('<h3>An error has occured during registration</h3>');
                 else {
-                    req.session.userName = this.username;
-                    req.session.userEmail = this.email;
-                    req.session.userRole = this.role;
+                    req.session.userName = newUser.username;
+                    req.session.userEmail = newUser.email;
+                    req.session.userRole = newUser.role;
                     res.redirect('/');
                 }
             });
