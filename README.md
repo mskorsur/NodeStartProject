@@ -34,7 +34,7 @@
 
  2)Implemented authentication and authorisation. New login and register paths can now be handled and allow a user to log in
  using his username and password or register with the same data plus an e-mail address. New users are directly saved to the database,
- and retrieved when they attempt to log in. For password encryption, a module called password-hash had been used, so that only a hash print
+ and retrieved when they attempt to log in. For password encryption, a module called bcrypt-nodejs had been used, so that only a hash print
  is saved in database and looked up for comparison when a user tries signing in, instead of a plaintext password value. For now, each new user
  has a default role of a basic member which grants him access to students data and allows him to post new students. If a guest tries to bypass login
  step to enter /data or /send path, they're being redirected to the login page. Still need to figure out what other roles should there be and what 
