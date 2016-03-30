@@ -19,8 +19,18 @@ router.post('/', function onSendPOST(req, res) {
         program: req.body.program,
         courses : req.body.courses
     }).save(function (err) {
-        if (err) res.send('<h3>An error has occured while saving student</h3>');
-        else res.send('<h3>Student saved successfully</h3>');
+        if (err)
+            res.render('send', {
+                layout: 'homepage',
+                home: false,
+                message: 'An error has occurred while saving student!'
+            });
+        else
+            res.render('send', {
+                layout: 'homepage',
+                home: false,
+                message: 'Student has been successfully saved!'
+            });
     });
 });
 

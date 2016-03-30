@@ -8,16 +8,13 @@ var router = express.Router();
 //user is already logged in; if so redirect him to the homepage page, if not render
 //the login view to him
 router.get('/', function onLoginGET(req, res) {
-    if (req.session.userName != undefined) {
+    if (req.session.userName != undefined) 
         res.redirect('/');
-    }
-    else {
+    else 
         res.render('login', {
             layout: 'layout', 
-            title: 'Login to students application', 
             message: 'Please enter your username and password'
         });
-    }
 });
 
 
