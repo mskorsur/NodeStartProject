@@ -14,6 +14,7 @@ var app = express();
 var root = require('./routes/root');
 var sendData = require('./routes/sendData');
 var getData = require('./routes/getData');
+var profile = require('./routes/profile');
 var register = require('./routes/register');
 var login = require('./routes/login');
 var logout = require('./routes/logout');
@@ -40,7 +41,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 
 //creating a new session
 app.use(session({
-    secret: 'super secret string',
+    secret: 'one super secret string',
     resave: false,
     saveUninitialized: true,
     store: new MongoStore({ url: 'mongodb://localhost:27017/learn' })
@@ -72,6 +73,10 @@ app.use('/data', checkLogin, getData);
 //mouting handler to the /send path in order to
 //get data from a user which is located in the request body
 app.use('/send', checkLogin, sendData);
+
+//mouting handler to the /profile path in order to
+//send user's account data to the user for review
+app.use('/profile', checkLogin, profile);
 
 //defining default 404 response
 app.use(function (req, res) {
