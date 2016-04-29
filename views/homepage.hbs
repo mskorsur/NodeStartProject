@@ -28,21 +28,126 @@
                     <ul class="nav navbar-nav">
                         <li><a href="/">Home</a></li>
                         <li><a href="/data">Get data</a></li>
+
+                        {{#if member}}
                         <li><a href="/send">Send data</a></li>
                         <li><a href="/profile">Profile</a></li>
+                        {{/if}}
+
                     </ul>
 
                     <ul class="nav navbar-nav navbar-right">
+                        {{#if member}}
                         <li class="active"><a href="/logout">Log-out</a></li>
+                        {{/if}}
                     </ul>
                 </div><!--/.nav-collapse -->
             </div><!--/.container-fluid -->
         </nav>
          
         {{#if home}}
-        <div class="jumbotron">
+        <div class="jumbotron text-center">
             <h1>Welcome to Node App</h1>
-            <p>To begin using this application, simply click on one of the options in the navigation bar!</p>
+            {{#if member}}
+            <p>To begin using this application, simply click on of the options in the navigation bar.</p>
+            {{/if}}
+
+            {{#unless member}}
+            <p>Hello there! Your usage of this is application is limited!</p>
+            <p>Please Login or Register to gain full access:</p>
+            <a class="btn btn-primary" data-toggle="modal" data-target="#loginModal"><span class="fa fa-user"></span> Login</a>
+            <a class="btn btn-primary" data-toggle="modal" data-target="#registrationModal"><span class="fa fa-user"></span> Register</a>
+
+            <!-- login modal start -->
+            <div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="Login" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                            <h5 class="modal-title">Login to your account</h5>
+                        </div>
+
+                        <div class="modal-body">
+                            <!-- The form is placed inside the body of modal -->
+                            <form id="loginForm" method="post" class="form-horizontal">
+                                <div class="form-group">
+                                    <label class="col-xs-3 control-label">Username</label>
+                                    <div class="col-xs-5">
+                                        <input type="text" class="form-control" name="username" />
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="col-xs-3 control-label">Password</label>
+                                    <div class="col-xs-5">
+                                        <input type="password" class="form-control" name="password" />
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <div class="col-xs-5 col-xs-offset-3">
+                                        <button type="submit" class="btn btn-primary" formmethod="post" formaction="/login">Login</button>
+                                        <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- login modal end -->
+
+            <!-- registration modal start -->
+            <div class="modal fade" id="registrationModal" tabindex="-1" role="dialog" aria-labelledby="Registration" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                            <h5 class="modal-title">Fill out the registration form</h5>
+                        </div>
+
+                        <div class="modal-body">
+                            <!-- The form is placed inside the body of modal -->
+                            <form id="loginForm" method="post" class="form-horizontal">
+                                <div class="form-group">
+                                    <label class="col-xs-3 control-label">Username</label>
+                                    <div class="col-xs-5">
+                                        <input type="text" class="form-control" name="username" placeholder="Username" required />
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="col-xs-3 control-label">Password</label>
+                                    <div class="col-xs-5">
+                                        <input type="password" class="form-control" name="password" placeholder="Password" required>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="col-xs-3 control-label">E-mail</label>
+                                    <div class="col-xs-5">
+                                        <input type="email" class="form-control" name="email" placeholder="Email" required>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <div class="col-xs-5 col-xs-offset-3">
+                                        <button type="submit" class="btn btn-primary" formmethod="post" formaction="/register">Register</button>
+                                        <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- registration modal end -->
+
+            {{/unless}}
         </div>
         {{/if}}
 

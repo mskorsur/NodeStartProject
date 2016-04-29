@@ -3,10 +3,10 @@ var router = express.Router();
 
 router.get('/', function onRootGET(req, res) {
     if (req.session.userName === undefined) {
-        res.render('main', { layout: 'layout' });
+        res.render('homepage', { home: true, member: false });
     }
     else {
-        res.render('homepage', { home: true });
+        res.render('homepage', { home: true, member: true });
     }
 });
 

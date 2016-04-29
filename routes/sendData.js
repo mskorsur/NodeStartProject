@@ -7,6 +7,7 @@ router.get('/', function onSendGET(req, res) {
     res.render('send', {
         layout: 'homepage', 
         home: false, 
+        member: true,
         message: 'Fill the form and send it to the database'
     });
 });
@@ -23,12 +24,14 @@ router.post('/', function onSendPOST(req, res) {
             res.render('send', {
                 layout: 'homepage',
                 home: false,
+                member: true,
                 message: 'An error has occurred while saving student!'
             });
         else
             res.render('send', {
                 layout: 'homepage',
                 home: false,
+                member: true,
                 message: 'Student has been successfully saved!'
             });
     });

@@ -1,17 +1,25 @@
 ﻿
      <h4>{{message}}</h4>
      
-     <div id="student_content" class="col-sm-4">
-         <ol>
-             {{#each students}}
-             <li>
-                 <ul class="list-group">
-                    <li class="list-group-item">Student's number - {{studentNumber}} </li>
-                    <li class="list-group-item">Full name - {{name}}</li>
-                    <li class="list-group-item">Program - {{program}}</li>
-                    <li class="list-group-item">Subjects - {{courses}}</li>
-                 </ul>
-             </li> 
-             {{/each}}
-         </ol>
+     <div id="student_content" class="col-sm-8">
+         <table class="table table-striped">
+             <thead>
+                 <tr>
+                     <th>Student's number</th>
+                     <th>Full name</th>
+                     <th>Program</th>
+                     <th>Subjects</th>
+                 </tr>
+             </thead>
+             <tbody>
+                 {{#each students}}
+                 <tr>
+                     <td>{{studentNumber}}</td>
+                     <td>{{name}}</td>
+                     <td>{{program}}</td>
+                     <td>{{courses}}</td>
+                 </tr>
+                 {{/each}}
+             </tbody>
+         </table>
      </div>

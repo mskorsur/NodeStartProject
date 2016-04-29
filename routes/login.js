@@ -7,6 +7,7 @@ var router = express.Router();
 //handling GET request for /login route - check the session state to see if the
 //user is already logged in; if so redirect him to the homepage page, if not render
 //the login view to him
+/*
 router.get('/', function onLoginGET(req, res) {
     if (req.session.userName != undefined) 
         res.redirect('/');
@@ -16,7 +17,8 @@ router.get('/', function onLoginGET(req, res) {
             message: 'Please enter your username and password'
         });
 });
-
+*/
+//Login form has been moved to the homepage view as a modal - no longer necessary to answer GET request for /login
 
 //handling POST request for /login route - querying the database to see if the entered user exists - if it does(both
 //username and password are valid) the user is redirected to homepage; if not the login view is rendered with an error message

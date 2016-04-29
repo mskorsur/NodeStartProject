@@ -21,6 +21,7 @@ router.get('/', function onProfileGET(req, res) {
             res.render('profile', {
                 layout: 'homepage',
                 home: false,
+                member: true,
                 message: 'Displaying profile information',
                 status: 'Set up a new password',
                 user: userInfo
@@ -49,41 +50,28 @@ router.post('/', function onProfilePOST(req, res) {
             });
         }
         else {
-            //check if a user entered his current password correctly
-            if (userInfo.validPassword(req.body.currentPassword)) {
-                //check if the user entered new password correctly 2 times
-                if (req.body.newPassword === req.body.retypedPassword) {
-                    //hash user's new password and update his entry in the database
-                    var newPasswordHash = userInfo.generateHash(req.body.newPassword);
-                    user.update({ username: req.session.userName }, { $set: { password: newPasswordHash } }, function onSuccessfulSet() {
-                        //render a view with a positive message
-                        res.render('profile', {
-                            layout: 'homepage',
-                            home: false,
-                            message: 'Displaying profile information',
-                            status: 'Password changed successfully!',
-                            user: userInfo
-                        });
-                    });
-                } 
-                //the user hasn't entered a new password correctly 2 times, render a view with a warning 
-                else {
+            if (userInfo.validPassword(req.body.currentPassword) && (req.body.newPassword === req.body.retypedPassword)) {
+                //hash user's new password and update his entry in the database
+                var newPasswordHash = userInfo.generateHash(req.body.newPassword);
+                user.update({ username: req.session.userName }, { $set: { password: newPasswordHash } }, function onSuccessfulSet() {
+                    //render a view with a positive message
                     res.render('profile', {
                         layout: 'homepage',
                         home: false,
+                        memeber: true,
                         message: 'Displaying profile information',
-                        status: 'Passwords do not match!',
+                        status: 'Password changed successfully!',
                         user: userInfo
                     });
-                }
+                });
             }
-            //the user has failed to enter his current password correctly, render a view with a warning
             else {
                 res.render('profile', {
                     layout: 'homepage',
                     home: false,
+                    member: true,
                     message: 'Displaying profile information',
-                    status: 'Wrong password entered!',
+                    status: 'Passwords do not match!',
                     user: userInfo
                 });
             }

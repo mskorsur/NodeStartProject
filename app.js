@@ -68,7 +68,7 @@ app.use('/logout', logout);
 
 //mouting handler to the /data path in order to
 //send back data from the database to a user
-app.use('/data', checkLogin, getData);
+app.use('/data', getData);
 
 //mouting handler to the /send path in order to
 //get data from a user which is located in the request body

@@ -47,3 +47,15 @@
  maintainable. Some middleware had been taken out of the app.js file and put in the libs folder. Also made a models folder 
  which contains database schemes for students and users.
 
+ ------
+ UPDATE #3 
+ Implemented a deeper version of role-based access control. Now every guest can view a homepage which will display
+ a welcoming message and the option to login or register. Moreover, the guest is able to view all students currently 
+ stored in the database, but cannot post new ones. Login and register forms have been transformed as modals and insterted
+ into the homepage view, so each of their own dedicated views is no longer necessary and has been deleted. Also it is no
+ longer necessary to listen for GET requests for those paths and render a form. 
+ After a successful login or registration, a user can use every functionality of the application which includes listing all students,
+ posting new students in the database and viewing his own profile page which is a new feature that I've developed. On that profile page, 
+ the user can view his specific account info and has an option to change his present password to a new one.
+ Finally, I have slightly modified all of the views a bit to be more consistent and fluid, most notably, students are now listed
+ in a form of table rather than in ordered list.

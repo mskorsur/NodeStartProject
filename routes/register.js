@@ -6,6 +6,7 @@ var router = express.Router();
 
 //handling GET request to the /register path - just displaying the
 //form which needs to be filled so that the app can save a user
+/*
 router.get('/', function onRegisterGET(req, res) {
     res.render('registration', 
      {
@@ -14,7 +15,8 @@ router.get('/', function onRegisterGET(req, res) {
         message: 'Please fill out the following form.'
     });
 });
-
+*/
+//Registration form has been moved to the homepage view as a modal - no longer necessary to answer GET request for /register
 
 //handling POST request for to the /register path - firstly, the database is 
 //queried to see if the selected username already exists; if it does, the registration form
