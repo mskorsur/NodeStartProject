@@ -2,7 +2,8 @@
 var router = express.Router();
 
 router.get('/', function onRootGET(req, res) {
-    if (req.session.userName === undefined) {
+    //if (req.session.userName === undefined) {
+    if (req.userName === undefined) {
         res.render('homepage', { home: true, member: false });
     }
     else {

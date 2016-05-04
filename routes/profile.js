@@ -8,7 +8,8 @@ var user = require('../model/userScheme');
 //if he is found, a view is rendered containing account data from the database and a form to update password
 //on the other hand, if he cannot be found due to a database error, a view is rendered with an appropriate message
 router.get('/', function onProfileGET(req, res) {
-    user.findOne({ username: req.session.userName }, function foundUserInfo(err, userInfo) {
+    // user.findOne({ username: req.session.userName }, function foundUserInfo(err, userInfo) {
+    user.findOne({ username: req.userName }, function foundUserInfo(err, userInfo) {
         if (err) {
             res.render('profile', {
                 layout: 'homepage',
@@ -40,7 +41,8 @@ router.get('/', function onProfileGET(req, res) {
 //After all checkups have been done, the new password entry is hashed and the user's database information updated with it.
 //Otherwise, for all failed attempts, a view is rendered with an appropriate warning.
 router.post('/', function onProfilePOST(req, res) {
-    user.findOne({ username: req.session.userName }, function setNewPassword(err, userInfo) {
+    //user.findOne({ username: req.session.userName }, function setNewPassword(err, userInfo) {
+    user.findOne({ username: req.userName }, function setNewPassword(err, userInfo) {
         if (err) {
             res.render('profile', {
                 layout: 'homepage',
@@ -53,7 +55,8 @@ router.post('/', function onProfilePOST(req, res) {
             if (userInfo.validPassword(req.body.currentPassword) && (req.body.newPassword === req.body.retypedPassword)) {
                 //hash user's new password and update his entry in the database
                 var newPasswordHash = userInfo.generateHash(req.body.newPassword);
-                user.update({ username: req.session.userName }, { $set: { password: newPasswordHash } }, function onSuccessfulSet() {
+                //user.update({ username: req.session.userName }, { $set: { password: newPasswordHash } }, function onSuccessfulSet() {
+                user.update({ username: req.userName }, { $set: { password: newPasswordHash } }, function onSuccessfulSet() {
                     //render a view with a positive message
                     res.render('profile', {
                         layout: 'homepage',

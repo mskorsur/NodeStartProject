@@ -13,7 +13,8 @@ router.get('/', function onDataGET(req, res) {
     //in which case no other options besides getting data are displayed or is he 
     //logged in and in that turn all availabe options are displayed to him
     var memberStatus = null;
-    if (req.session.userName != undefined)
+    //if (req.session.userName != undefined)
+    if (req.userName != undefined)
         memberStatus = true;
     else
         memberStatus = false;
@@ -43,7 +44,8 @@ router.get('/:programs', function dataGETwithParams(req, res) {
     var programs = req.params.programs;
     
     var memberStatus = null;
-    if (req.session.userName != undefined)
+  //  if (req.session.userName != undefined)
+    if (req.userName != undefined)
         memberStatus = true;
     else
         memberStatus = false;

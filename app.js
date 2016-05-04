@@ -23,6 +23,9 @@ var logout = require('./routes/logout');
 var checkLogin = require('./libs/requireLogin');
 var logReqInfo = require('./libs/logRequestInfo');
 
+//importing a secret used for cookies and other stuff
+var secretString = require('./libs/secret');
+
 //establishing database connection
 mongoose.connect('mongodb://localhost:27017/learn', function (err) {
     if (err) console.log('Can \'t establish connection with the database');
@@ -39,16 +42,19 @@ app.use(bodyParser.json());
 //URL encoding needed for form data
 app.use(bodyParser.urlencoded({ extended: false }));
 
+/*
 //creating a new session
 app.use(session({
-    secret: 'one super secret string',
-    resave: false,
-    saveUninitialized: true,
+    secret: secretString,
+    resave: false, //don't save session again if it hasn't been modified
+    saveUninitialized: false, //don't save sessions that haven't yet gotten any info, e.g. user hasn't yet logged in
     store: new MongoStore({ url: 'mongodb://localhost:27017/learn' })
 }));
-
+*/
 
 app.use(logReqInfo);
+
+app.use(checkLogin);
 
 //mounting handler to the root path in order to
 //respond with the homepage
@@ -72,11 +78,11 @@ app.use('/data', getData);
 
 //mouting handler to the /send path in order to
 //get data from a user which is located in the request body
-app.use('/send', checkLogin, sendData);
+app.use('/send', sendData);
 
 //mouting handler to the /profile path in order to
 //send user's account data to the user for review
-app.use('/profile', checkLogin, profile);
+app.use('/profile', profile);
 
 //defining default 404 response
 app.use(function (req, res) {

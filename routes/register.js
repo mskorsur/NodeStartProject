@@ -6,17 +6,16 @@ var router = express.Router();
 
 //handling GET request to the /register path - just displaying the
 //form which needs to be filled so that the app can save a user
-/*
+
 router.get('/', function onRegisterGET(req, res) {
-    res.render('registration', 
+    res.render('register', 
      {
-        layout: 'layout', 
-        title: 'Node Student Program Registration',
-        message: 'Please fill out the following form.'
+        layout: 'homepage', 
+        message: 'Please fill out the following form.',
+        member: false
     });
 });
-*/
-//Registration form has been moved to the homepage view as a modal - no longer necessary to answer GET request for /register
+
 
 //handling POST request for to the /register path - firstly, the database is 
 //queried to see if the selected username already exists; if it does, the registration form
@@ -38,18 +37,30 @@ router.post('/', function onRegisterPOST(req, res) {
             newUser.save(function (err) {
                 if (err) res.send('<h3>An error has occured during registration</h3>');
                 else {
+                    /*
                     req.session.userName = newUser.username;
                     req.session.userEmail = newUser.email;
                     req.session.userRole = newUser.role;
+                    */
+
+                    var token = jwt.sign({ user: newUser.username, role: 'member' }, secret, {
+                        issuer: 'node-student-app',
+                        expiresIn: '24h'
+                    });
+                    
+                    setCookie = new Cookies(req, res).set('access_token', token, {
+                        httpOnly: true
+                    });
+
                     res.redirect('/');
                 }
             });
         }
         else {
-            res.render('registration', {
-                layout: 'layout',
-                title: 'Registration Error',
-                message: 'Selected username already exists! Please choose another one.'
+            res.render('register', {
+                layout: 'homepage',
+                message: 'Selected username already exists! Please choose another one.',
+                memeber: false
             });
         }
     });
