@@ -51,11 +51,19 @@
  UPDATE #3 
  Implemented a deeper version of role-based access control. Now every guest can view a homepage which will display
  a welcoming message and the option to login or register. Moreover, the guest is able to view all students currently 
- stored in the database, but cannot post new ones. Login and register forms have been transformed as modals and insterted
- into the homepage view, so each of their own dedicated views is no longer necessary and has been deleted. Also it is no
- longer necessary to listen for GET requests for those paths and render a form. 
+ stored in the database, but cannot post new ones. Login and register forms have been modified to include the navbar
+ which is present in the rest of the app, to achieve consistency with the rest of the application. 
  After a successful login or registration, a user can use every functionality of the application which includes listing all students,
  posting new students in the database and viewing his own profile page which is a new feature that I've developed. On that profile page, 
  the user can view his specific account info and has an option to change his present password to a new one.
  Finally, I have slightly modified all of the views a bit to be more consistent and fluid, most notably, students are now listed
  in a form of table rather than in ordered list.
+
+ Another major feature that I've finally gotten my hands into is JSON Web Tokens. These are quite convenient to transfer pieces of
+ information between a client and a server in a fast, lightweight fashion and they also come up with signing, so it's possible to know
+ if they have been tampered with. I used them for authentication in such a way that every time a user wants to log in, his credentials 
+ are checked and upon a successful attempt, a token is generated containing basic info about the user and sent to him via a cookie. This
+ approach effectively eliminates the need for a costly database session storage, which in this app is not really needed since very little
+ info is being stored for every logged user. After the user has gotten a cookie, on every other attempted request, token form the cookie is 
+ extracted to verify that it hasn't been modified. In that case, the user is granted access to whichever route he was trying to get to, otherwise
+ he is redirected to the homepage and must login again to use the application.

@@ -35,7 +35,6 @@ router.post('/', function onLoginPOST(req, res) {
         if (user === null) {
             res.render('login', {
                 layout: 'homepage', 
-                title: 'Login failed', 
                 message: 'Invaild username or password, please try again!',
                 member: false
 
@@ -54,7 +53,7 @@ router.post('/', function onLoginPOST(req, res) {
                     expiresIn: '24h'
                 });
 
-                console.log('JWT for' + ' ' + user.userName + ' ' + token);
+                console.log('JWT for' + ' ' + user.username + ' ' + token);
                 setCookie = new Cookies(req, res).set('access_token', token, {
                  httpOnly: true
                 });
@@ -65,7 +64,6 @@ router.post('/', function onLoginPOST(req, res) {
             else {
                 res.render('login', {
                     layout: 'homepage', 
-                    title: 'Login failed', 
                     message: 'Invaild username or password, please try again!',
                     member: false
                 });

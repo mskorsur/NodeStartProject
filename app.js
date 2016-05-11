@@ -52,9 +52,9 @@ app.use(session({
 }));
 */
 
-app.use(logReqInfo);
-
+//checking user's JWT token and logging info about req object
 app.use(checkLogin);
+app.use(logReqInfo);
 
 //mounting handler to the root path in order to
 //respond with the homepage
