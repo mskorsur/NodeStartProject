@@ -1,6 +1,7 @@
 ﻿var express = require('express');
 var mongoose = require('mongoose');
 var bodyParser = require('body-parser');
+var validator = require('express-validator');
 var hbs = require('hbs');
 
 //session-based packages
@@ -41,6 +42,15 @@ app.set('view engine', 'hbs');
 app.use(bodyParser.json());
 //URL encoding needed for form data
 app.use(bodyParser.urlencoded({ extended: false }));
+
+//used for sanitizing user input
+app.use(validator());
+app.use(function (req, res, next) {
+    for (var item in req.body) {
+        req.sanitize(item).escape();
+    }
+    next();
+});
 
 /*
 //creating a new session
