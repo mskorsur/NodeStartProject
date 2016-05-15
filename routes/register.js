@@ -1,12 +1,14 @@
 ﻿var express = require('express');
 var mongoose = require('mongoose');
 var user = require('../model/userScheme');
+var Cookies = require('cookies');
+var jwt = require('jsonwebtoken');
+var secret = require('../libs/secret');
 
 var router = express.Router();
 
 //handling GET request to the /register path - just displaying the
 //form which needs to be filled so that the app can save a user
-
 router.get('/', function onRegisterGET(req, res) {
     res.render('register', 
      {

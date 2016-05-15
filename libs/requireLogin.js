@@ -18,12 +18,12 @@ module.exports = function (req, res, next) {
     //allow a user to visit non-restricted paths even without a token, those paths are open for every guest
     //token == "[object Object]" condition is necessary for a user who has just logged out so that he could browse the app as a guest
     //cookie middleware leaves cookie in that state after deleting it
-    if ((req.originalUrl === '/' || req.originalUrl === '/data' || req.originalUrl === '/login' || req.orignalUrl === '/register') 
+    if ((req.originalUrl === '/' || req.originalUrl === '/data' || req.originalUrl === '/login' || req.originalUrl === '/register') 
         && (token === undefined || token == "[object Object]")) 
-        next();   
+        next();
     else {
         var verifiedToken = jwt.verify(token, secret, function (err, decodedToken) {
-            if (err)
+            if (err) 
                 res.redirect('/');
             else {
                 req.userName = decodedToken.user;
